@@ -3,7 +3,7 @@ import time
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_chroma  import Chroma 
+from langchain_chroma  import Chroma as CDb
 from models import Models
 from uuid import uuid4
 
@@ -14,16 +14,49 @@ llm = models.model_ollama
 
 # Define cnstants
 exam_foler = "/.Exam Collection"
-chunk_size = 1000
-chunk_overlap = 50
-chunk_interval =  10
+CHUNK_SIZE = 1000
+CHUNK_OVERLAP = 50
+CHECK_INTERVAL =  10
 
 # Chroma vector store
-vector_store = Chroma(
-    collection_name="documents",
-    embedding_function=embeddings,
+vector_store = CDb(
+    collection_name = "documents",
+    embedding_function = embeddings,
     # Storing vector space locally
-    persist_directory="./db/chroma_langchain_db",
+    persist_directory = "./db/chroma_langchain_db",
 )
 
+#Ingest file, load and split file
+def  ingest_file(file_path):
+    print(f'Ingesting: {file_path}')
+    loader =  PyPDFLoader(file_path)
+    loaded_docs =  loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size = CHUNK_SIZE, chunk_overlap = CHUNK_OVERLAP,
+        separators= ['\n', " ", ""]
+    )
 
+    documents = text_splitter.split_documents(loaded_docs)
+    uuids = [str(uuid4(documents) for _ in range(len(documents)))]
+    print(f'Adding {len(documents)} to vector space')
+    vector_store.add_documents(documents=documents, ids=uuids) # Add doc chunks in CDb
+    print(f'Ingested: {file_path}')
+
+
+# Main Loop
+def main_loop():
+    while True:
+        for filename in os.listdir(exam_foler):
+            if not filename.startswith('_'):
+                # To prevent adding same document twice
+                file_path = os.path.join(exam_foler, filename) 
+                ingest_file(filename)
+                new_filename  = '_' + file_path
+                new_filepath = os.path.join(exam_foler, new_filename)
+                os.rename(file_path, new_filepath)
+            time.sleep(CHECK_INTERVAL) #Check every period for new documents
+
+
+# Run main loop
+if __name__ == "__main__":
+    main_loop()
