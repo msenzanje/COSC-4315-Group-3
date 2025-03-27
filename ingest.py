@@ -13,7 +13,7 @@ embeddings  = models.embeddings_ollama
 llm = models.model_ollama
 
 # Define cnstants
-exam_foler = "/.Exam Collection"
+knowledge_base = "/.knowledge_base"  # TODO: Add relevant textbook to vecor store
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 50
 CHECK_INTERVAL =  10
@@ -46,13 +46,13 @@ def  ingest_file(file_path):
 # Main Loop
 def main_loop():
     while True:
-        for filename in os.listdir(exam_foler):
+        for filename in os.listdir(knowledge_base):
             if not filename.startswith('_'):
                 # To prevent adding same document twice
-                file_path = os.path.join(exam_foler, filename) 
+                file_path = os.path.join(knowledge_base, filename) 
                 ingest_file(filename)
                 new_filename  = '_' + file_path
-                new_filepath = os.path.join(exam_foler, new_filename)
+                new_filepath = os.path.join(knowledge_base, new_filename)
                 os.rename(file_path, new_filepath)
             time.sleep(CHECK_INTERVAL) #Check every period for new documents
 
