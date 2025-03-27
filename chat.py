@@ -16,10 +16,20 @@ vector_store  = CDb(
     persist_directory="./db/chroma_langchain_db"  # Vector store location
 )
 
+# Template used to guide esponse
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "Answer qustion based on data provided"),
+        ("system", "Your are a student taking a test. Answer thequstions based on data provided"),
         ("human", "Use the user input {input} to answer question. Use {contect} to"
         "answer question")
     ]
 )
+
+# Define the retrieval chain
+# Retriver from our vector store. To find and retrieve relevent docs
+retriever = vector_store.as_retriever(kwargs={"k":10}) # 10 most relevant docs
+combine_docs_chain = create_stuff_documents_chain(
+    llm,
+    prompt
+)
+retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
