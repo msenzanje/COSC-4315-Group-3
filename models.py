@@ -1,4 +1,3 @@
-import os
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 
 class Models:
