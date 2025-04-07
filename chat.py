@@ -19,7 +19,8 @@ vector_store  = CDb(
 # Template used to guide esponse
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are an assistant. Answer thequstions based on data provided"),
+        ("system", "You are a student taking an exam. Answer each question and explain your\
+         though process"),
         ("human", "Use the user input {input} to answer question. Use {context} to"
         "answer question")
     ]
@@ -35,14 +36,8 @@ retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
 
 
 # Main loop
-def main():
-    while True:
-        query = input("'q' or 'quit to end: ")
-        if query.lower() in ['q', 'quit']:
-            break
-        result = retrieval_chain.invoke({"input": query})
-        print(f'Assistant: {result["answer"]} \n\n')
-
-# Run main loop
-if __name__ ==  "__main__":
-    main()
+def chatbot(query:str)->str:
+    query = query
+    result = retrieval_chain.invoke({"input": query})
+    
+    return(f'{result["answer"]}')

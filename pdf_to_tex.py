@@ -2,14 +2,14 @@ import re
 import pymupdf as fitz
 import os
 
-def extract_text_from_pdf(pdf_path):
+def extract_text_from_pdf(pdf_path:str):
     doc = fitz.open(pdf_path)
     text = ""
     for page in doc:
         text += page.get_text("text") + "\n"
     return text
 
-def format_math_to_latex(text):
+def format_math_to_latex(text:str):
     # Convert fractions, limits, logarithms, and other mathematical symbols
     text = re.sub(r"lim\s*x→([a-zA-Z0-9±∞-]+)", r"\\lim_{{x \\to \1}}", text)
     text = re.sub(r"log([0-9]+)\s", r"\\log_{\1}", text)
@@ -28,7 +28,7 @@ def pdf_tex(path: str, out_folder: str):
     
     # Output file
     base_filename = os.path.splitext(os.path.basename(path))[0]
-    output_file = os.path.join(out_folder, f"{base_filename}.tex")
+    output_file = os.path.join(out_folder, f"{base_filename}.json")
 
     # Write to file
     print(f'Writing to: {output_file}')
