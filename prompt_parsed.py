@@ -7,7 +7,7 @@ exam_folder =  './tex_exam_collection'
 answer_folder = './responses'
 
 
-def extract_questions(file_path):
+def extract_questions(file_path: str):
     questions = []
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
