@@ -1,91 +1,103 @@
-MAC 2312 CALCULUS II CRN 83557 MWF
-Exam 2
-Term Fall, 2024
-Full Name:
-Instructions
-1. Total time: 1 hour 15 minutes.
-2. Write the information requested above.
-3. Switch off any electronic devices.
-4. Calculators are not allowed.
-5. Write the solution in the given space.
-6. Show all your work for full credit.
-7. Scratch papers are provided but will not be graded.
-1
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
 
-Q.N.
-Points
-Score
-1
-10
-2
-10
-3
-10
-4
-10
-5
-10
-6
-10
-Bonus
-10
-Total
-60
-2 / 9
+\title{MAC 2312 CALCULUS II \\ Exam 2}
+\date{Term: Fall, 2024}
+\author{CRN 83557 \\ MWF}
 
-1. (10 points) Find the exact length of the curve:
-y = 2
-3x3/2,
-0 ≤x ≤3.
-3 / 9
+\begin{document}
 
-2. (10 points) Find the exact area of the surface obtained by rotating the curve about the x-axis:
-y = 5 −2x,
-0 ≤x ≤2.
-4 / 9
+\maketitle
 
-3. (10 points) Find the integral and determine whether the integral is convergent or divergent:
-Z ∞
-0
-2x e−x2 dx.
-5 / 9
+\noindent
+\textbf{Full Name:} \rule{10cm}{0.4pt}
 
-4. (10 points) Find the centroid of the region bounded by the given curve:
-y = x + 1, −1 ≤x ≤1
-6 / 9
+\vspace{0.5cm}
 
-5. (10 points) Given Parametric curve: x = t + 5,
-y = t3 −3t2
-(a) (2 pts) Find the corresponding Cartesian equation by eliminating parameter.
-(b) (6 pts) Find derivatives dy
-dx and d2y
-dx2 in terms of ‘t’.
-[Hint: dy
-dx = dy/dt
-dx/dt and d2y
-dx2 = d(dy/dx)/dt
-dx/dt
-]
-(c) (2 pts) For which values of t is the curve concave upward ?
-7 / 9
+\section*{Instructions}
+\begin{enumerate}
+    \item Total time: 1 hour 15 minutes.
+    \item Write the information requested above.
+    \item Switch off any electronic devices.
+    \item Calculators are not allowed.
+    \item Write the solution in the given space.
+    \item Show all your work for full credit.
+    \item Scratch papers are provided but will not be graded.
+\end{enumerate}
 
-6. (10 points) Find the area of the Polar region that is bounded by the given curve and lies in the specified
-sector. [Hint: sin 2θ = 2 sin θ cos θ]
-r = sin θ + cos θ,
-0 ≤θ ≤π
-8 / 9
+\vspace{0.5cm}
 
-Bonus Problem (Extra 10 points)
-(a) (5 points) Determine whether the sequence converges or diverges. If it converges, find the limit:
-an = ln (3n2 + 1) −ln (n2 + n).
-(b) (5 points) Find a formula for the general term an of the sequence, assuming that the pattern of the
-first few terms continues.
-1
-3, −4
-5, 9
-7, −16
-9 , 25
-11, . . .
-
-9 / 9
+\noindent
+\begin{tabular}{|c|c|c|}
+    \hline
+    Q.N. & Points & Score \\
+    \hline
+    1 & 10 & \\
+    2 & 10 & \\
+    3 & 10 & \\
+    4 & 10 & \\
+    5 & 10 & \\
+    6 & 10 & \\
+    Bonus & 10 & \\
+    \hline
+    Total & 60 & \\
+    \hline
+\end{tabular}
 
+\newpage
+
+\section*{1. (10 points)}
+Find the exact length of the curve: \\
+\[
+y = \frac{2}{3}x^{3/2}, \quad 0 \leq x \leq 3
+\]
+
+\section*{2. (10 points)}
+Find the exact area of the surface obtained by rotating the curve about the x-axis: \\
+\[
+y = 5 - 2x, \quad 0 \leq x \leq 2
+\]
+
+\section*{3. (10 points)}
+Find the integral and determine whether the integral is convergent or divergent: \\
+\[
+\int_0^{\infty} 2x e^{-x^2} \, dx
+\]
+
+\section*{4. (10 points)}
+Find the centroid of the region bounded by the given curve: \\
+\[
+y = x + 1, \quad -1 \leq x \leq 1
+\]
+
+\section*{5. (10 points)}
+Given Parametric curve: \( x = t + 5, \quad y = t^3 - 3t^2 \)
+\begin{enumerate}
+    \item[(a)] (2 pts) Find the corresponding Cartesian equation by eliminating the parameter.
+    \item[(b)] (6 pts) Find derivatives \( \frac{dy}{dx} \) and \( \frac{d^2y}{dx^2} \) in terms of \( t \). \\
+    [Hint: \( \frac{dy}{dx} = \frac{dy/dt}{dx/dt} \), and \( \frac{d^2y}{dx^2} = \frac{d(dy/dx)/dt}{dx/dt} \)]
+    \item[(c)] (2 pts) For which values of \( t \) is the curve concave upward?
+\end{enumerate}
+
+\section*{6. (10 points)}
+Find the area of the Polar region that is bounded by the given curve and lies in the specified sector. \\
+[Hint: \( \sin 2\theta = 2\sin \theta \cos \theta \)]
+\[
+r = \sin \theta + \cos \theta, \quad 0 \leq \theta \leq \pi
+\]
+
+\section*{Bonus Problem (Extra 10 points)}
+\begin{enumerate}
+    \item[(a)] (5 points) Determine whether the sequence converges or diverges. If it converges, find the limit: \\
+    \[
+    a_n = \ln(3n^2 + 1) - \ln(n^2 + n)
+    \]
+    \item[(b)] (5 points) Find a formula for the general term \( a_n \) of the sequence, assuming that the pattern of the first few terms continues: \\
+    \[
+    \left\{ \frac{1}{3}, -\frac{4}{5}, \frac{9}{7}, -\frac{16}{9}, \frac{25}{11}, \dots \right\}
+    \]
+\end{enumerate}
+
+\end{document}
