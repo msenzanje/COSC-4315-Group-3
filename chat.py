@@ -19,10 +19,8 @@ vector_store  = CDb(
 # Template used to guide esponse
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are a student taking an exam. Answer each question and explain your\
-         though process"),
-        ("human", "Use the user input {input} to answer question. Use {context} to"
-        "answer question")
+        ("system", "You are a student taking an exam. Answer each question."),
+        ("human", "Use the user input {input} to answer question.")
     ]
 )
 
@@ -34,10 +32,13 @@ combine_docs_chain = create_stuff_documents_chain(
 )
 retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
 
+# No vector stor
+chain = prompt | llm
+
 
 # Main loop
 def chatbot(query:str)->str:
     query = query
-    result = retrieval_chain.invoke({"input": query})
+    result = chain.invoke({"input": query})
     
-    return(f'{result["answer"]}')
+    return(f'{result}')
