@@ -19,7 +19,7 @@ def extract_questions(file_path):
 for file in os.listdir(exam_folder):
     # Extract question from exam 
     file_path = os.path.join(exam_folder, file) 
-    questions = extract_questions(file_path)
+    questions = extract_questions(file_path) ######jJFNJFNJNF
 
     # Pair questions and responses
     qa_pairs = []
@@ -32,7 +32,7 @@ for file in os.listdir(exam_folder):
         })
 
     # Write to JSON
-    base_name = os.path.splitext(os.path.basename('tex_exam_collection/Exam 1_Calculus 1.tex'))[0]
+    base_name = os.path.splitext(os.path.basename(file_path))[0]
     out_file = base_name+'_responses.json'
     out_path = os.path.join(answer_folder, out_file)
 
