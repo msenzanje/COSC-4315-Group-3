@@ -27,7 +27,7 @@ vector_store = CDb(
 )
 
 #Ingest file, load and split file
-def  ingest_file(file_path):
+def  ingest_file(file_path:str):
     print(f'Ingesting: {file_path}')
     loader =  PyPDFLoader(file_path)
     loaded_docs =  loader.load() # Load and extract text from file
