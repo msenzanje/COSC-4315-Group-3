@@ -19,9 +19,11 @@ vector_store  = CDb(
 # Template used to guide esponse
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are a student taking an exam. Answer each question."),
-        ("human", "Use the user input {input} to answer question. Use {context}/"
-        "to answer the question")
+     ("system", "You are a student taking an exam. Answer each\
+       question thoroughly and completely."),
+     ("human", "Using the provided input: {input}, and the \
+        context: {context}, answer all questions. Make sure you \
+        respond to every part of the prompt.")
     ]
 )
 

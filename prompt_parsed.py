@@ -33,7 +33,7 @@ for file in os.listdir(exam_folder):
 
     # Write to JSON
     base_name = os.path.splitext(os.path.basename(file_path))[0]
-    out_file = base_name+'_responses.json'
+    out_file = base_name+'_responsesB.json'
     out_path = os.path.join(answer_folder, out_file)
 
     with open(out_path, 'w', encoding='utf-8') as f:
