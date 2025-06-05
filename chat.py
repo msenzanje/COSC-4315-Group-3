@@ -43,14 +43,7 @@ retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
 chain = prompt | llm
 
 # Main loop
-def main():
-    while True:
-        query = input("'q' or 'quit to end: ")
-        if query.lower() in ['q', 'quit']:
-            break
-        result = retrieval_chain.invoke({"input": query})
-        print(f'Assistant: {result["answer"]} \n\n')
-
-# Run main loop
-if __name__ ==  "__main__":
-    main()
+def chatbot(query:str)->str:
+    result = chain.invoke({"input": query, "context": None})
+    
+    return(f'{result}')
