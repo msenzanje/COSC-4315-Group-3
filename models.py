@@ -7,7 +7,11 @@ class Models:
             model = 'snowflake-arctic-embed:22m',
         )
 
-        self.model_ollama = ChatOllama(
+        self.model_llava = ChatOllama(
+            model= 'llava:7b'
+        )
+
+        self.model_llama2 = ChatOllama(  # Model used for intial testing
             model =  'llama2:latest'
         )
             

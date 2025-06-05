@@ -7,7 +7,7 @@ from langchain_chroma import Chroma as CDb
 # Initialize models
 models =  Models()
 embeddings  = models.embeddings_ollama
-llm = models.model_ollama
+llm = models.model_llava
 
 # Initialize vector store
 vector_store  = CDb(
@@ -19,9 +19,13 @@ vector_store  = CDb(
 # Template used to guide esponse
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are an assistant. Answer thequstions based on data provided"),
-        ("human", "Use the user input {input} to answer question. Use {context} to"
-        "answer question")
+     ("system", "You are a student taking an exam. Answer each\
+       question thoroughly and completely."),
+       
+     ("human", "Answer the following question in plain readable english\
+       using only the information provided. Do not use any LaTex notation\
+       Ignore all previous context\
+       or conversation {context}: \n {input}")
     ]
 )
 
@@ -31,8 +35,12 @@ retriever = vector_store.as_retriever(kwargs={"k":10}) # 10 most relevant docs
 combine_docs_chain = create_stuff_documents_chain(
     llm, prompt
 )
+
+# Vector DB use (The RAG part)
 retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
 
+# No vector DB use
+chain = prompt | llm
 
 # Main loop
 def main():
